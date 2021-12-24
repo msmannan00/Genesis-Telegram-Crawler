@@ -5,7 +5,6 @@ from crawler_root.crawler.application_manager.application_controller import appl
 from crawler_root.crawler.application_manager.application_enums import APPICATION_COMMANDS
 from crawler_root.services.shared_services.telegram_manager.telegram_controller import telegram_controller
 from crawler_root.services.shared_services.telegram_manager.telegram_enums import TELEGRAM_COMMANDS
-from interface_manager.controller.constants.constant import constants
 from interface_manager.controller.controller.admin.manage_feeder.manage_feeder_enums import MANAGE_FEEDER_GET_PARAMETER_KEY, MANAGE_FEEDER_MESSAGE_CALLBACK
 from settings.constant import APP_STATUS
 from settings.route import ROUTE
@@ -25,13 +24,14 @@ class manage_feeder_model(request_handler):
         m_feeder_name = request.args.get(MANAGE_FEEDER_GET_PARAMETER_KEY.S_FEEDER_NAME)
         m_feeder_phone = request.args.get(MANAGE_FEEDER_GET_PARAMETER_KEY.S_FEEDER_PHONE)
 
-        if APP_STATUS.S_CURRENT_REQUEST_PHONE_NUMBER != "":
-            return False, MANAGE_FEEDER_MESSAGE_CALLBACK.S_FEEDER_REQUEST_PENDING
-
         if p_command == MANAGE_FEEDER_COMMANDS.S_SUBMIT_INSERT:
+
             if len(m_feeder_name)<=0:
                 return False, MANAGE_FEEDER_MESSAGE_CALLBACK.S_FEEDER_EMPTY
-            if  m_feeder_name not in constants.S_ALLOWED_FEEDERS:
+
+            m_feeder_status = telegram_controller.get_instance().invoke_trigger(TELEGRAM_COMMANDS.S_FEEDER_EXISTS, [m_feeder_name])
+
+            if  m_feeder_status is False:
                 return False, MANAGE_FEEDER_MESSAGE_CALLBACK.S_FEEDER_NOT_INSTALLED
             m_status = telegram_controller.get_instance().invoke_trigger(TELEGRAM_COMMANDS.S_FEEDER_STATUS,[m_feeder_name])
             if  m_status is True:
@@ -61,6 +61,11 @@ class manage_feeder_model(request_handler):
             else:
                 return MANAGE_FEEDER_MESSAGE_CALLBACK.S_FEEDER_STARTED_SUCCESSFULLY
         if p_command == MANAGE_FEEDER_COMMANDS.S_SUBMIT_VIEW:
+
+            print("----------------------",flush=True)
+            print("---------------------- : " + str(json.dumps(telegram_controller.get_instance().invoke_trigger(TELEGRAM_COMMANDS.S_FEEDER_INDEXED_DATA))),flush=True)
+            print("----------------------",flush=True)
+
             return json.dumps(telegram_controller.get_instance().invoke_trigger(TELEGRAM_COMMANDS.S_FEEDER_INDEXED_DATA))
         if p_command == MANAGE_FEEDER_COMMANDS.S_SUBMIT_DELETE:
             m_feeder_name = request.args.get(MANAGE_FEEDER_GET_PARAMETER_KEY.S_FEEDER_NAME)

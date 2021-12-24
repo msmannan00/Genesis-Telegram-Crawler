@@ -24,9 +24,13 @@ class telegram_controller(request_handler):
 
     def __init__(self):
         telegram_controller.__instance = self
+        self.__init_feeder()
 
     def __init_feeder(self):
         try:
+            print("1---------------------", flush=True)
+            print("1--------------------- : " + str(len(self.__m_client_list)), flush=True)
+            print("1---------------------", flush=True)
             m_response = requests.get(DATA_URLS.S_GENESIS_PATH)
             for line in m_response.text.splitlines():
                 m_channel_model = channel_model(line, threading.get_native_id())
@@ -85,6 +89,13 @@ class telegram_controller(request_handler):
 
         return m_data
 
+    def __feeder_exists(self, p_channel_url):
+
+        for m_index in range(0, len(self.__m_client_list)):
+            if self.__m_client_list[m_index].m_channel_url == p_channel_url:
+                return True
+        return False
+
     def invoke_trigger(self, p_commands, p_data=None):
         if p_commands == TELEGRAM_COMMANDS.S_INIT_FEEDER:
             self.__init_feeder()
@@ -102,4 +113,6 @@ class telegram_controller(request_handler):
             return self.__verify_login(p_data[0])
         if p_commands == TELEGRAM_COMMANDS.S_FEEDER_INDEXED_DATA:
             return self.__feeder_data()
+        if p_commands == TELEGRAM_COMMANDS.S_FEEDER_EXISTS:
+            return self.__feeder_exists(p_data[0])
 

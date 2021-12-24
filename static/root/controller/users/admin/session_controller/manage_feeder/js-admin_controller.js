@@ -16,6 +16,7 @@ class admin_controller {
   }
 
   on_ajax_post(p_command, p_message){
+
      if(p_command === COMMANDS.S_SUBMIT_INSERT){
             document.getElementById(DOM.S_PANEL_INSERT).style.display = "none";
             document.getElementById(DOM.S_PANEL_DELETE).style.display = "none";
@@ -30,8 +31,10 @@ class admin_controller {
             document.getElementById(DOM.S_RESPONSE).style.display = "block";
             document.getElementById(DOM.S_PANEL_INSERT).style.display = "block";
 
-            window.open("./manage-feeder-verification","_blank")
 
+            if (p_message.includes("success")){
+                window.open("./manage-feeder-verification","_blank")
+            }
      }
      if(p_command === COMMANDS.S_SUBMIT_DELETE){
          document.getElementById(DOM.S_FEEDER_DELETE).value = ""

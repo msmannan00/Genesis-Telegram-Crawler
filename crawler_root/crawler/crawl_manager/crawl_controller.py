@@ -35,24 +35,27 @@ class crawl_controller(request_handler):
 
     # Awake Crawler From Sleep
     def __create_crawler_instance(self, p_channel_url):
-        telegram_controller.get_instance().invoke_trigger(TELEGRAM_COMMANDS.S_START_FEEDER, [p_channel_url])
-        m_channel_model = telegram_controller.get_instance().invoke_trigger(TELEGRAM_COMMANDS.S_GET_FEEDER,
-                                                                            [p_channel_url])
-        if m_channel_model is None:
-            return
+        # try:
+            telegram_controller.get_instance().invoke_trigger(TELEGRAM_COMMANDS.S_START_FEEDER, [p_channel_url])
+            m_channel_model = telegram_controller.get_instance().invoke_trigger(TELEGRAM_COMMANDS.S_GET_FEEDER, [p_channel_url])
+            if m_channel_model is None:
+                telegram_controller.get_instance().invoke_trigger(TELEGRAM_COMMANDS.S_REMOVE_FEEDER, p_channel_url)
+                return
 
-        m_channel_crawler = m_channel_model.m_client
+            m_channel_crawler = m_channel_model.m_client
 
-        # Creating Thread Instace
-        m_crawler_instance = i_crawl_controller()
+            # Creating Thread Instace
+            m_crawler_instance = i_crawl_controller()
 
-        # Saving Thread Instace
-        log.g().i(INFO_MESSAGES.S_THREAD_CREATED + str(threading.get_native_id()))
+            # Saving Thread Instace
+            log.g().i(INFO_MESSAGES.S_THREAD_CREATED + str(threading.get_native_id()))
 
-        # Start Thread Instace
-        m_crawler_instance.invoke_trigger(ICRAWL_CONTROLLER_COMMANDS.S_START_CRAWLER_INSTANCE,
-                                          [m_channel_crawler, m_channel_model.m_channel_url])
-        telegram_controller.get_instance().invoke_trigger(TELEGRAM_COMMANDS.S_REMOVE_FEEDER, p_channel_url)
+            # Start Thread Instace
+            m_crawler_instance.invoke_trigger(ICRAWL_CONTROLLER_COMMANDS.S_START_CRAWLER_INSTANCE, [m_channel_crawler, m_channel_model.m_channel_url])
+            telegram_controller.get_instance().invoke_trigger(TELEGRAM_COMMANDS.S_REMOVE_FEEDER, p_channel_url)
+        # except Exception as ex:
+        #     log.g().e("Crawl Error : " + str(ex) )
+        #     telegram_controller.get_instance().invoke_trigger(TELEGRAM_COMMANDS.S_REMOVE_FEEDER, p_channel_url)
 
     # Try To Get Job For Crawler Instance
     def invoke_trigger(self, p_command, p_data=None):

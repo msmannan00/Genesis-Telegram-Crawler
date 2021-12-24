@@ -18,26 +18,21 @@ class topic_classifier_model(request_handler):
 
     def __classifier_exists(self):
         if self.__m_classifier_trained is not True:
-            if os.path.exists(SHARED_CONSTANT.S_PROJECT_PATH + CLASSIFIER_PATH_CONSTANT.S_VECTORIZER_PATH) is True and \
-               os.path.exists(SHARED_CONSTANT.S_PROJECT_PATH + CLASSIFIER_PATH_CONSTANT.S_SELECTKBEST_PATH) is True and \
-               os.path.exists(SHARED_CONSTANT.S_PROJECT_PATH + CLASSIFIER_PATH_CONSTANT.S_TRAINING_DATA_PATH) is True:
                 self.__m_classifier_trained = True
                 self.__load_classifier()
                 return True
-            else:
-                return False
         else:
             return True
 
     def __load_classifier(self):
-        self.__m_vectorizer = pickle.load(open(SHARED_CONSTANT.S_PROJECT_PATH + CLASSIFIER_PATH_CONSTANT.S_VECTORIZER_PATH, 'rb'))
-        self.__m_feature_selector = pickle.load(open(SHARED_CONSTANT.S_PROJECT_PATH + CLASSIFIER_PATH_CONSTANT.S_SELECTKBEST_PATH, 'rb'))
-        self.__m_classifier = pickle.load(open(SHARED_CONSTANT.S_PROJECT_PATH + CLASSIFIER_PATH_CONSTANT.S_CLASSIFIER_PICKLE_PATH, 'rb'))
+        self.__m_vectorizer = pickle.load(open((os.path.join(os.path.dirname(__file__), CLASSIFIER_PATH_CONSTANT.S_VECTORIZER_PATH)), 'rb'))
+        self.__m_feature_selector = pickle.load(open((os.path.join(os.path.dirname(__file__), CLASSIFIER_PATH_CONSTANT.S_SELECTKBEST_PATH)), 'rb'))
+        self.__m_classifier = pickle.load(open((os.path.join(os.path.dirname(__file__), CLASSIFIER_PATH_CONSTANT.S_CLASSIFIER_PICKLE_PATH)), 'rb'))
 
     def __predict_classifier(self, p_title, p_description, p_keyword):
-        m_status = self.__classifier_exists()
-        if m_status is True:
-            try:
+                m_status = self.__classifier_exists()
+        #if m_status is True:
+            #try:
                 m_title = pd.Series([p_title])
                 m_description = pd.Series([p_description])
                 m_keyword = pd.Series([p_keyword])
@@ -74,10 +69,10 @@ class topic_classifier_model(request_handler):
                     m_predictions = "General"
 
                 return m_predictions
-            except Exception:
-                return "UN_KNOWN"
-        else:
-            return "UN_KNOWN"
+            #except Exception:
+            #    return "UN_KNOWN"
+        #else:
+        #    return "UN_KNOWN"
 
     def invoke_trigger(self, p_command, p_data=None):
         if p_command == TOPIC_CLASSFIER_MODEL.S_PREDICT_CLASSIFIER:

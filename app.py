@@ -1,6 +1,8 @@
 from flask import Flask, request, redirect, session
 from flask_pymongo import MongoClient
 
+from crawler_root.services.shared_services.telegram_manager.telegram_controller import telegram_controller
+from crawler_root.services.shared_services.telegram_manager.telegram_enums import TELEGRAM_COMMANDS
 from interface_manager.controller.shared.commands import MANAGE_SEARCH_COMMANDS
 from settings.constant import S_SECRET_KEY, S_MONGO_URL
 from settings.key import *
@@ -14,6 +16,7 @@ app = Flask(__name__)
 app.config[S_MONGO_URI] = S_MONGO_URL
 client = MongoClient(host='mongodb', port=27017,)
 mongo = client["mongo_grading_system"]
+
 
 # Routes
 @app.route(ROUTE.S_INDEX)

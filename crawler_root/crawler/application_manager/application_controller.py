@@ -4,6 +4,8 @@ from crawler_root.crawler.crawl_manager.crawl_enums import CRAWL_CONTROLLER_COMM
 from crawler_root.services.shared_services.log_service.log_enums import ERROR_MESSAGES
 from crawler_root.crawler.request_manager.request_handler import request_handler
 from crawler_root.crawler.crawl_manager.crawl_controller import crawl_controller
+from crawler_root.services.shared_services.telegram_manager.telegram_controller import telegram_controller
+from crawler_root.services.shared_services.telegram_manager.telegram_enums import TELEGRAM_COMMANDS
 
 
 class application_controller(request_handler):

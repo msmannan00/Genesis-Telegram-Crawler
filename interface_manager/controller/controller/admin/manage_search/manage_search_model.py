@@ -2,6 +2,9 @@ import json
 
 from flask import render_template, redirect, request
 
+from crawler_root.services.shared_services.topic_classifier_manager.topic_classifier import topic_classifier
+from crawler_root.services.shared_services.topic_classifier_manager.topic_classifier_enums import \
+    TOPIC_CLASSFIER_COMMANDS
 from interface_manager.controller.controller.admin.manage_search.manage_search_enums import \
     MANAGE_SEARCH_GET_PARAMETER_KEY
 from interface_manager.controller.services.elastic.elastic_controller import elastic_controller
@@ -47,9 +50,6 @@ class manage_search_model(request_handler):
 
 
         m_result_final = m_result['hits']['hits']
-        print("----------------------------",flush=True)
-        print("---------------------------- : " + str(m_result_final),flush=True)
-        print("----------------------------",flush=True)
 
         return str(m_result_final)
 

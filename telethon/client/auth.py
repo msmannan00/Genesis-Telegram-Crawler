@@ -133,6 +133,17 @@ class AuthMethods:
             raise ValueError('Both a phone and a bot token provided, '
                              'must only provide one of either')
 
+        #m_count = 0
+        #print("FUCKS1 : ----------------------------- : " + APP_STATUS.S_CURRENT_REQUEST_PHONE_NUMBER, flush=True)
+        #while APP_STATUS.S_REQUEST_PHONE_NUMBER[APP_STATUS.S_CURRENT_REQUEST_PHONE_NUMBER] == "":
+        #    if m_count > 30:
+        #        break
+        #    sleep(1)
+        #    m_count += 1
+        #    continue
+
+        #print("FUCKS2 : -----------------------------", flush=True)
+
         coro = self._start(
             phone=phone,
             password=password,
