@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include './root/controller/local-env.html' %}
+{% include './root/controller/dashboard/dashboard-env.html' %}
+
+<body>
+    {% include './blades/blade-navbar.html' %}
+    {% include './blades/blade-welcome.html' %}
+
+    {% if m_data['m_role']=="admin" %}
+        {% include './blades/blade-admin-panel.html' %}
+    {% elif m_data['m_role']=="researcher" %}
+        {% include './blades/blade-research-panel.html' %}
+    {% endif %}
+
+</body>
+</html>

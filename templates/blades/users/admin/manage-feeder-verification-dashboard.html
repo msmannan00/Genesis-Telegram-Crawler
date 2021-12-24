@@ -1,0 +1,16 @@
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='root/controller/users/admin/cs-manage_feeder_verification.css') }}">
+<script src="{{url_for('static', filename='root/controller/users/admin/session_controller/manage_feeder_verification/js-admin_controller.js')}}"></script>
+<script src="{{url_for('static', filename='root/controller/users/admin/session_controller/manage_feeder_verification/js-admin_enums.js')}}"></script>
+<script>invoke_trigger(3)</script>
+
+<h3 id="p_feeder_timer" class="manage_feeder_timer_panel">30 seconds to expire</h3>
+<div class="manage_feeder_verification" onload="invoke_trigger(3)">
+    <form id="m_verification" class="manage_feeder_verification_panel" onsubmit="invoke_trigger(2); return false;" method="get">
+      <div class="form-group">
+        <br><input type="text" class="form-control" id="p_feeder_url_verification" placeholder="Enter secret number sent to messanger">
+      </div>
+
+      <input type="hidden" name="p_type" value="insert">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

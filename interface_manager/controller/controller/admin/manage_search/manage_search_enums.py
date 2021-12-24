@@ -1,0 +1,2 @@
+class MANAGE_SEARCH_GET_PARAMETER_KEY:
+    S_QUERY = "p_search"

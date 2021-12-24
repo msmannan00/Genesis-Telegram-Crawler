@@ -1,0 +1,29 @@
+###### Requirements For Docker ######
+Django>=3.0,<4.0
+psycopg2>=2.8
+flask~=0.12
+pymongo~=3.12.1
+flask_pymongo
+
+###### Requirements Without Version Specifiers ######
+beautifulsoup4
+bs4
+gensim
+pandas
+eventlet
+pymongo
+sklearn
+nltk
+pyprobables
+requests[socks]
+numpy
+stopwords
+termcolor
+nest_asyncio
+pyaes
+rsa
+stopwords
+
+###### Requirements With Version Specifiers ######
+simplejson==3.8.0
+elasticsearch==7.12.0

@@ -1,0 +1,12 @@
+.manage_search{
+    margin: 15px;
+    border-radius: 7px;
+    border: 1px solid #e6e6e6;
+    background: #fcfcfc;
+    max-width: 94%;
+}
+.manage_search_panel{
+    margin: 0 15px 10px;
+    max-width: 500px;
+}
+

@@ -1,0 +1,18 @@
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='root/controller/users/admin/cs-manage_search.css') }}">
+<script src="{{url_for('static', filename='root/controller/users/admin/session_controller/manage_search/js-admin_controller.js')}}"></script>
+<script src="{{url_for('static', filename='root/controller/users/admin/session_controller/manage_search/js-admin_enums.js')}}"></script>
+
+<div class="manage_search">
+    <form id="m_verification" class="manage_search_panel" onsubmit="invoke_trigger(2); return false;" method="get">
+      <div class="form-group">
+        <br><input type="text" class="form-control" id="p_search" placeholder="Enter your query">
+      </div>
+
+      <input type="hidden" name="p_type" value="insert">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<form id="m_view" class="manage_feeder_panel--all-users manage_feeder_panel--hidden" style="padding: 10px" method="get">
+</form>
+

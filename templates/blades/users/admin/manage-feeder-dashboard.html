@@ -1,0 +1,55 @@
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='root/controller/users/admin/cs-manage_feeder.css') }}">
+<script src="{{url_for('static', filename='root/controller/users/admin/session_controller/manage_feeder/js-admin_controller.js')}}"></script>
+<script src="{{url_for('static', filename='root/controller/users/admin/session_controller/manage_feeder/js-admin_enums.js')}}"></script>
+
+<div class="manage_feeder">
+    <div class="btn-group btn-group-toggle manage_feeder_menu" data-toggle="buttons">
+      <h3>Information Panel</h3><br><br>
+      <label class="btn btn-primary active" onclick="invoke_trigger(1)">
+        <input type="radio" name="options" id="option1" autocomplete="off" checked> Insert Feeder
+      </label>
+      <label class="btn btn-primary" onclick="invoke_trigger(2)">
+        <input type="radio" name="options" id="option2" autocomplete="off"> Delete Feeder
+      </label>
+      <label class="btn btn-primary" onclick="invoke_trigger(3)">
+        <input type="radio" name="options" id="option3" autocomplete="off"> View Feeder
+      </label>
+
+    </div>
+
+    <div class="manage_feeder_alert" id="m_view_display_container">
+        <div class="alert alert-info" role="alert" id="p_response"></div>
+    </div>
+
+    <form id="m_insert" class="manage_feeder_panel" onsubmit="invoke_trigger(4); return false;" method="get">
+      <div class="form-group">
+        <br><input type="text" class="form-control" id="p_feeder_url_insert" placeholder="Enter Feeder URL to Insert">
+        <br><input type="text" class="form-control" id="p_feeder_url_phone" placeholder="Enter Phone Number">
+      </div>
+
+      <input type="hidden" name="p_type" value="insert">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <form id="m_delete"  class="manage_feeder_panel manage_feeder_panel--hidden" onsubmit="invoke_trigger(5); return false;" method="get">
+      <div class="form-group">
+        <br><input type="text" class="form-control" id="p_feeder_url_delete" placeholder="Enter Feeder URL to Delete">
+      </div>
+
+      <input type="hidden" name="p_type" value="insert">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <form id="m_verification" class="manage_feeder_panel manage_feeder_panel--hidden" onsubmit="invoke_trigger(6); return false;" method="get">
+      <div class="form-group">
+        <br><input type="text" class="form-control" id="p_feeder_url_verification" placeholder="Enter secret number sent to messanger">
+      </div>
+
+      <input type="hidden" name="p_type" value="insert">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <form id="m_view" class="manage_feeder_panel--all-users manage_feeder_panel--hidden" style="padding: 10px" method="get">
+        Feeder Data Empty
+    </form>
+</div>

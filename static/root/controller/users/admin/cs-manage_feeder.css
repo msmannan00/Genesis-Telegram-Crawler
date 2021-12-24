@@ -1,0 +1,28 @@
+.manage_feeder{
+    margin: 15px;
+    border-radius: 7px;
+    border: 1px solid #e6e6e6;
+    background: #fcfcfc;
+    max-width: 94%;
+}
+.manage_feeder_menu{
+    margin: 1em 13px 10px;
+}
+.manage_feeder_alert{
+    margin: 1em 13px 0;
+    max-width: 500px;
+    display: none;
+}
+.manage_feeder_panel{
+    margin: 0 15px 10px;
+    max-width: 500px;
+}
+.manage_feeder_panel--all-users{
+    margin: 2em 15px 10px;
+    max-width: 100%;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+}
+.manage_feeder_panel--hidden{
+    display: none;
+}

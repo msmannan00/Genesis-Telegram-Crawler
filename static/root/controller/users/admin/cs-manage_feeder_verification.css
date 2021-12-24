@@ -1,0 +1,19 @@
+.manage_feeder_verification{
+    margin: 15px;
+    border-radius: 7px;
+    border: 1px solid #e6e6e6;
+    background: #fcfcfc;
+    max-width: 94%;
+}
+.manage_feeder_verification_panel{
+    margin: 0 15px 10px;
+    max-width: 500px;
+}
+.manage_feeder_timer_panel{
+    margin: 15px;
+    border-radius: 7px;
+    border: 1px solid #e6e6e6;
+    background: #fcfcfc;
+    max-width: 94%;
+    padding: 20px !important;
+}

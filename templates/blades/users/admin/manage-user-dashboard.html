@@ -1,0 +1,76 @@
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='root/controller/users/admin/cs-manage_user.css') }}">
+<script src="{{url_for('static', filename='root/controller/users/admin/session_controller/manage_user/js-admin_controller.js')}}"></script>
+<script src="{{url_for('static', filename='root/controller/users/admin/session_controller/manage_user/js-admin_enums.js')}}"></script>
+
+<div class="manage_user">
+    <div class="btn-group btn-group-toggle manage_user_menu" data-toggle="buttons">
+      <h3>Information Panel</h3><br><br>
+      <label class="btn btn-primary active" onclick="invoke_trigger(1)">
+        <input type="radio" name="options" id="option1" autocomplete="off" checked> Insert User
+      </label>
+      <label class="btn btn-primary" onclick="invoke_trigger(2)">
+        <input type="radio" name="options" id="option2" autocomplete="off"> Update User
+      </label>
+      <label class="btn btn-primary" onclick="invoke_trigger(3)">
+        <input type="radio" name="options" id="option3" autocomplete="off"> Delete User
+      </label>
+      <label class="btn btn-primary" onclick="invoke_trigger(4)">
+        <input type="radio" name="options" id="option3" autocomplete="off"> View
+      </label>
+    </div>
+
+    <div class="manage_user_alert" id="p_response_container">
+        <div class="alert alert-info" role="alert" id="p_response"></div>
+    </div>
+
+    <form id="m_insert" class="manage_user_panel" onsubmit="invoke_trigger(5); return false;" method="get">
+      <br><div class="form-group">
+        <input type="text" class="form-control" id="p_username_insert" aria-describedby="emailHelp" placeholder="Enter username">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" id="p_password_insert" placeholder="Enter password">
+      </div>
+
+        <div class="btn-group btn-group-toggle" id="p_role_insert" data-toggle="buttons">
+          <label class="btn btn-secondary active">
+            <input type="radio" name="options" id="p_role_insert_on" value="admin" autocomplete="off" checked> Admin
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="p_role_insert_off" value="researcher" autocomplete="off"> Researcher
+          </label>
+        </div><br><br>
+
+      <input type="hidden" name="p_type" value="insert">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <form id="m_update" class="manage_user_panel manage_user_panel--hidden" onsubmit="invoke_trigger(6); return false;" method="get">
+      <br><div class="form-group">
+        <input type="text" class="form-control" id="p_username_update" aria-describedby="emailHelp" placeholder="Enter username">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" id="p_password_update" placeholder="Enter password">
+      </div>
+      <input type="hidden" name="p_type" value="update">
+
+        <div class="btn-group btn-group-toggle" id="p_role_update" data-toggle="buttons">
+          <label class="btn btn-secondary active">
+            <input type="radio" name="options" id="option1" value="admin" autocomplete="off" checked> Admin
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option2" value="researcher" autocomplete="off"> Researcher
+          </label>
+        </div><br><br>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <form id="m_remove"  class="manage_user_panel manage_user_panel--hidden" onsubmit="invoke_trigger(7); return false;" method="get">
+      <br><div class="form-group">
+        <input type="text" class="form-control" id="p_username_delete" aria-describedby="emailHelp" placeholder="Enter username">
+      </div>
+      <input type="hidden" name="p_type" value="delete">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <form id="m_view" class="manage_user_panel--all-users manage_user_panel--hidden" method="get"></form>
+</div>
