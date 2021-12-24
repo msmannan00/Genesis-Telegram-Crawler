@@ -36,6 +36,7 @@ class admin_controller {
       }
       m_html += "</div>"
       document.getElementById(DOM.S_DISPLAY_SEARCH).innerHTML = m_html
+      document.getElementById('json-renderer').style.display = "block";
 
       $('#json-renderer').jsonViewer(response);
 

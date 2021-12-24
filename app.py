@@ -1,8 +1,5 @@
 from flask import Flask, request, redirect, session
 from flask_pymongo import MongoClient
-
-from crawler_root.services.shared_services.telegram_manager.telegram_controller import telegram_controller
-from crawler_root.services.shared_services.telegram_manager.telegram_enums import TELEGRAM_COMMANDS
 from interface_manager.controller.shared.commands import MANAGE_SEARCH_COMMANDS
 from settings.constant import S_SECRET_KEY, S_MONGO_URL
 from settings.key import *
@@ -41,7 +38,7 @@ def manage_verification():
 # Routes
 @app.route(ROUTE.S_MANAGE_USER)
 def manage_user():
-    from interface_manager.controller.controller.admin.manage_feeder.manage_feeder_controller import manage_feeder_controller
+    from interface_manager.controller.controller.admin.manage_user.manage_user_controller import manage_user_controller
     from interface_manager.controller.shared.commands import MANAGE_USER_COMMANDS
 
     if request.args.__contains__(S_COMMAND) is not False:
@@ -49,7 +46,7 @@ def manage_user():
     else:
         m_command = MANAGE_USER_COMMANDS.S_MANAGE_USER_TEMPLATE
 
-    return manage_feeder_controller.get_instance().invoke_trigger(m_command, None)
+    return manage_user_controller.get_instance().invoke_trigger(m_command, None)
 
 # Routes
 @app.route(ROUTE.S_MANAGE_FEEDER)
