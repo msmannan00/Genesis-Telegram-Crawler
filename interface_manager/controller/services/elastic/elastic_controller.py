@@ -7,7 +7,6 @@ from interface_manager.controller.services.elastic.elastic_enums import ELASTIC_
 from interface_manager.controller.services.elastic.elastic_request_generator import elastic_request_generator
 from interface_manager.controller.shared.messages import MANAGE_USER_MESSAGES
 from interface_manager.controller.shared.request_handler import request_handler
-from elasticsearch import Elasticsearch as ES
 from elasticsearch import helpers
 
 class elastic_controller(request_handler):
